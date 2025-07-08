@@ -1,0 +1,34 @@
+.task {
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 15px;
+  cursor: grab;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.task .task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task .priority-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.task .task-controls,
+.task .task-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.task:active {
+  cursor: grabbing;
+}
