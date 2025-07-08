@@ -1,8 +1,9 @@
 const Task = require("../models/Task");
 
+// ✅ Get all tasks for a specific board
 exports.getTasksByBoard = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.params; // board ID
     const tasks = await Task.find({ boardId: id }).sort({ createdAt: -1 });
     res.json(tasks);
   } catch (error) {
@@ -10,9 +11,10 @@ exports.getTasksByBoard = async (req, res) => {
   }
 };
 
+// ✅ Create a task for a specific board
 exports.createTask = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.params; // board ID
     const taskData = { ...req.body, boardId: id };
     const task = new Task(taskData);
     await task.save();
@@ -22,9 +24,10 @@ exports.createTask = async (req, res) => {
   }
 };
 
+// ✅ Update a task by task ID
 exports.updateTask = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.params; // task ID
     const task = await Task.findByIdAndUpdate(id, req.body, {
       new: true,
       runValidators: true,
@@ -38,9 +41,10 @@ exports.updateTask = async (req, res) => {
   }
 };
 
+// ✅ Delete a task by task ID
 exports.deleteTask = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.params; // task ID
     const task = await Task.findByIdAndDelete(id);
     if (!task) {
       return res.status(404).json({ error: "Task not found" });

@@ -1,5 +1,4 @@
-// src/api/boards.js
-const API_BASE = "https://trello-1-67ax.onrender.com";
+const API_BASE = process.env.REACT_APP_API_BASE;
 
 export const fetchBoards = async () => {
   const res = await fetch(`${API_BASE}/boards`);
