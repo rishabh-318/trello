@@ -1,5 +1,5 @@
 // src/api/boards.js
-const API_BASE = "http://localhost:5000";
+const API_BASE = "https://trello-1-67ax.onrender.com";
 
 export const fetchBoards = async () => {
   const res = await fetch(`${API_BASE}/boards`);
