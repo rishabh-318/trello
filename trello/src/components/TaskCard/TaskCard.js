@@ -39,13 +39,11 @@ const TaskCard = ({ task, onUpdate, onDelete }) => {
 
   const handleStatusChange = async (taskId, newStatus) => {
     try {
-      if (!taskId || !newStatus) {
-        throw new Error("Invalid task ID or status.");
-      }
+      if (!taskId || !newStatus) throw new Error("Invalid task ID or status.");
 
-      await updateTask(taskId, { status: newStatus });
+      const updated = await updateTask(taskId, { status: newStatus });
+      onUpdate(updated); // <- update UI immediately
 
-      // Optionally update local state if you're managing tasks manually
       console.log(`✅ Task ${taskId} status updated to ${newStatus}`);
     } catch (error) {
       console.error("❌ Failed to update task:", error.message);
@@ -130,7 +128,7 @@ const TaskCard = ({ task, onUpdate, onDelete }) => {
       <div className="task-controls">
         <select
           value={task.status}
-          onChange={(e) => handleStatusChange(e.target.value)}
+          onChange={(e) => handleStatusChange(task._id, e.target.value)}
         >
           <option>To Do</option>
           <option>In Progress</option>
