@@ -37,9 +37,20 @@ const TaskCard = ({ task, onUpdate, onDelete }) => {
     }
   };
 
-  const handleStatusChange = async (status) => {
-    const updated = await updateTask(task._id, { status });
-    onUpdate(updated);
+  const handleStatusChange = async (taskId, newStatus) => {
+    try {
+      if (!taskId || !newStatus) {
+        throw new Error("Invalid task ID or status.");
+      }
+
+      await updateTask(taskId, { status: newStatus });
+
+      // Optionally update local state if you're managing tasks manually
+      console.log(`✅ Task ${taskId} status updated to ${newStatus}`);
+    } catch (error) {
+      console.error("❌ Failed to update task:", error.message);
+      alert("Something went wrong while updating the task. Try again.");
+    }
   };
 
   if (isEditing) {
