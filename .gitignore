@@ -1,1 +1,22 @@
+# Environment files
+.env
+*.env.local
+
+# Vercel deploy config
+.vercel/
+
+# VS Code settings
 .vscode/
+
+# Dependencies (both frontend & backend)
+**/node_modules/
+
+# Production builds (both frontend & backend)
+**/build/
+**/dist/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
